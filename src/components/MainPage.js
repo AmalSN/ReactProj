@@ -97,7 +97,7 @@ const MainPage = () => {
             <div className="col-2">
                 <button type="button" className="btn btn-warning btn-lg offset-md-4" onClick={() => userSettings()}>
                     {/* userSettings() */}
-                    <img src="./profile.png" style={{width: 50+"px", height: 50+"px"}} alt=""/>
+                    <img src="/profile.png" style={{width: 50+"px", height: 50+"px"}} alt=""/>
                 </button>
             </div>
             <div className="col-2">

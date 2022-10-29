@@ -37,7 +37,7 @@ const Navbar = ({active, setActive}) => {
                     </ul>
                 </li>
                 <li className="nav-item">
-                    <a className={active==="Statistics"?"nav-link active":"nav-link"} aria-current="page" href="/statistics" onClick={() => {setActive(active = "Statistics")}}>Statistics</a>
+                    <a className={active==="Statistics"?"nav-link active":"nav-link"} aria-current="page" href="/statistics" onClick={() => {console.log("h");setActive(active = "Statistics")}}>Statistics</a>
                     {/* <span className={active==="Statistics"?"nav-link active":"nav-link"} onClick={() => {setActive(active = "Statistics")}}>Statistics</span> */}
                 </li>
             </ul>

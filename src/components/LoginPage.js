@@ -95,13 +95,13 @@ export default function LoginPage() {
               >
                 <div className="carousel-inner">
                   <div className="carousel-item active">
-                    <img src="./ludo.avif" className="d-block w-100" alt="..."/>
+                    <img src="/ludo.avif" className="d-block w-100" alt="..."/>
                   </div>
                   <div className="carousel-item">
-                    <img src="./snake and ladder.jpg" className="d-block w-100" alt="..."/>
+                    <img src="/snake and ladder.jpg" className="d-block w-100" alt="..."/>
                   </div>
                   <div className="carousel-item">
-                    <img src="./tic.jpg" className="d-block w-100" alt="..."/>
+                    <img src="/tic.jpg" className="d-block w-100" alt="..."/>
                   </div>
                 </div>
               </div>

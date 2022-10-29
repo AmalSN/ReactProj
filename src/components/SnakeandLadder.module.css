@@ -1,4 +1,4 @@
-*{
+.allclasses{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -40,16 +40,11 @@
   flex: 1; 
 }
 
-.board-container{
+.boardcontainer{
     display: flex;
     flex: 2;
     align-items: center;
     justify-content: center;
-}
-
-canvas{
-  box-sizing: content-box;
-  border: 1px solid black;
 }
 
 .board{
@@ -70,7 +65,7 @@ canvas{
     border: 1px #f4decb solid;
 }
 
-.dice-container{
+.dicecontainer{
     display: flex;
     flex: 1;
 }
@@ -92,11 +87,11 @@ canvas{
     box-shadow: inset 2px 2px #d90429;
 }
 
-.dice-one {
+.dice1 {
     left: 450px; 
 }
 
-.dice-two {
+.dice2 {
     left: 300px;
     top:-200px;
   }
@@ -130,54 +125,54 @@ canvas{
   .side:nth-child(2) {
     transform: rotateY(-180deg) translateZ(3.1em); }
   
-  .two-1, .three-1, .four-1, .five-1, .six-1 {
+  .two1, .three1, .four1, .five1, .six1 {
     top: 20%;
     left: 20%; }
   
-  .four-3, .five-3, .six-4 {
+  .four3, .five3, .six4 {
     top: 20%;
     left: 80%; }
   
-  .one-1, .three-2, .five-5 {
+  .one1, .three2, .five5 {
     top: 50%;
     left: 50%; }
   
-  .four-2, .five-2, .six-3 {
+  .four2, .five2, .six3 {
     top: 80%;
     left: 20%; }
   
-  .two-2, .three-3, .four-4, .five-4, .six-6 {
+  .two2, .three3, .four4, .five4, .six6 {
     top: 80%;
     left: 80%; }
   
-  .six-2 {
+  .six2 {
     top: 50%;
     left: 20%; }
   
-  .six-5 {
+  .six5 {
     top: 50%;
     left: 80%; 
   }
 
-  .show-1 {
+  .show1 {
     transform: rotateX(720deg) rotateZ(-720deg); }
 
-    .show-2 {
+    .show2 {
       transform: rotateX(-900deg) rotateZ(1080deg); }
     
-    .show-6 {
+    .show6 {
       transform: rotateY(-450deg) rotateZ(-1440deg); }
     
-    .show-3{
+    .show3{
       transform: rotateY(810deg) rotateZ(720deg); }
     
-    .show-4 {
+    .show4 {
       transform: rotateX(-810deg) rotateZ(-1080deg); }
     
-    .show-5 {
+    .show5 {
       transform: rotateX(450deg) rotateZ(-720deg); }
     
-      button {
+      .btn {
         padding: 15px 50px;
         color: #fff;
         background-color: #f4d35e;
@@ -188,14 +183,14 @@ canvas{
         outline: none;
         transition: .3s; 
       }
-      button:hover, button:active {
+      .btn:hover, .btn:active {
         outline: none;
         background: #50514F;
         cursor: pointer;
         transform: translateY(15px); 
       }
 
-#turn-indicator {
+#turnindicator {
     font-size: 40px;
 }
 
@@ -204,23 +199,23 @@ canvas{
   height: 18px;
 }
 
-.red-piece-color {
+.redpiececolor {
   color: red;
 }
 
-.blue-piece-color {
+.bluepiececolor {
   color: blue;
 }
 
-.yellow-piece-color {
+.yellowpiececolor {
   color: yellow;
 }
 
-.green-piece-color {
+.greenpiececolor {
   color: green;
 }
 
-.relative-container{
+.relativecontainer{
   position: relative;
 }
 
@@ -340,4 +335,11 @@ canvas{
   height: 100%;
   width: 100%;
   z-index: 999;
+}
+
+
+.movToRight {
+  position: absolute;
+  top: 370px;
+  left: 750px;
 }
