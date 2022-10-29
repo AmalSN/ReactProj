@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
 
-body {
+.statbody {
   background-image:url(../../public/new.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
   font-family: 'Lobster', cursive;
 }
 
-h1 {
+.stath1 {
   text-align: center;
   font-family: 'Dela Gothic One', cursive;
 }
 
-.accordion {
+.stataccordion {
   width: 800px;
   margin: 10px auto;
   color: rgb(229, 129, 15);
@@ -23,12 +23,12 @@ h1 {
   padding: 45px 45px;
 }
 
-.accordion .container {
+.accordion .statcontainer {
     position: relative;
     margin: 10px 10px;
   }
     
-.accordion .label {
+.accordion .statlabel {
     position: relative;
     padding: 8px 8px;
     font-size: 30px;
@@ -36,7 +36,7 @@ h1 {
     cursor: pointer;
   }
 
-.accordion .label::before {
+.accordion .statlabel::before {
     content: '+';
     color: rgb(228, 52, 178);
     position: absolute;
@@ -46,7 +46,7 @@ h1 {
     transform: translateY(-50%);
   }
   
-.accordion .content {
+.accordion .statcontent {
     position: relative;
     height: 0;
     font-size: 20px;
@@ -56,21 +56,21 @@ h1 {
     transition: 0.5s;
   }
   
-.accordion hr {
+.accordion .stathr {
     width: 100;
     margin-left: 0;
     border: 1px solid rgb(32, 219, 104);
   }
 
-.accordion .container.active .content {
+.accordion .statcontainer.active .statcontent {
     height: 150px;
   }
   
-.accordion .container.active .label::before {
+.accordion .statcontainer.active .statlabel::before {
     content: '-';
     font-size: 30px;
   }
 
-.list-group-item{
+.statlistgroupitem{
       color: rgb(205, 214, 69);
   }
