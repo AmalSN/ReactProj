@@ -2,7 +2,7 @@ import React from 'react'
 import mainstyle from "./MainPage.module.css"
 import $ from 'jquery';
 // import "../pages/Hello.js"
-const MainPage = ({placeHolder}) => {
+const MainPage = () => {
 
     
     function playGame(){
@@ -20,7 +20,7 @@ const MainPage = ({placeHolder}) => {
     }
 
   return (
-    <body className={mainstyle.brownColor}>
+    <div className={mainstyle.brownColor}>
     <div className="container-fluid">
         <div className="row">
             <div className="col-6">
@@ -106,7 +106,7 @@ const MainPage = ({placeHolder}) => {
             </div>
         </div>
     </div>
-    </body>
+    </div>
   )
 }
 
