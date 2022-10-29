@@ -44,7 +44,7 @@ export default function Contact() {
                               $submit.css('display', 'block').text(waitText);
                           },
                           success: function(msg) {
-                           if (msg == 'OK') {
+                           if (msg === 'OK') {
                                $('#form-message-warning').hide();
                                 setTimeout(function(){
                                    $('#contactForm').fadeOut();
@@ -86,12 +86,12 @@ export default function Contact() {
                 <form action="/sendMail" method="POST" className="mb-5">
                     <div className="row">
                         <div className="col-md-6 form-group mb-5">
-                            <label for="" className="col-form-label">Name *</label>
+                            <label htmlFor="" className="col-form-label">Name *</label>
                             <input type="text" className="form-control" name="name" id="name"
                                 placeholder="Username"/>
                         </div>
                         <div className="col-md-6 form-group mb-5">
-                            <label for="" className="col-form-label">Email *</label>
+                            <label htmlFor="" className="col-form-label">Email *</label>
                             <input type="text" className="form-control" name="email" id="email"
                                 placeholder="Your email"/>
                         </div>
@@ -136,7 +136,7 @@ export default function Contact() {
 
                     <div className="row">
                         <div className="col-md-12 form-group mb-5">
-                            <label for="message" className="col-form-label">Message *</label>
+                            <label htmlFor="message" className="col-form-label">Message *</label>
                             <textarea className="form-control" name="message" id="message" cols="30" rows="4"
                                 placeholder="Elaborate your concern :-"></textarea>
                         </div>

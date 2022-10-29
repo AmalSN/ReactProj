@@ -3,7 +3,7 @@ import snk from './SnakeandLadder.module.css'
 
 const Dice = ({num}) => {
   return (
-    <div className={`${snk.dice} ${num==1?"mx-auto dce1":"dce1"}`} id={num==1?snk.dice1:snk.dice2} style={{width: 100+"px", height: 100+"px"}}>
+    <div className={`${snk.dice} ${num===1?"mx-auto dce1":"dce1"}`} id={num===1?snk.dice1:snk.dice2} style={{width: 100+"px", height: 100+"px"}}>
                         <div className={`${snk.side} one`}>
                             <div className={`${snk.dot} ${snk.one1}`}></div>
                         </div>

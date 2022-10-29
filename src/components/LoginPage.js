@@ -80,7 +80,7 @@ export default function LoginPage() {
                     Login
                   </button>
                   <span className="float-start text-dark">
-                    Forgot <a href="/">password?</a>
+                    Forgot <link to="/">password?</link>
                   </span>
                 </div>
               </form>

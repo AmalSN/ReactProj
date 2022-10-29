@@ -37,25 +37,25 @@ let drawSymbol = (pos) => {
           // socket.emit("drawT");
       }
       else{
-          if(currentSymbol == "X")currentSymbol="O";
+          if(currentSymbol === "X")currentSymbol="O";
           else currentSymbol="X";
           // socket.emit("moveT", {x: blockSymbol, y: currentSymbol});
       }
   }    
 };
 let rowCheck = function(i) {
-  let check = blockSymbol[i] != "" && (blockSymbol[i] == blockSymbol[i + 1] && blockSymbol[i] == blockSymbol[i + 2]);
+  let check = blockSymbol[i] !== "" && (blockSymbol[i] === blockSymbol[i + 1] && blockSymbol[i] === blockSymbol[i + 2]);
   return check;
 }
 
 let columnCheck = function(i) {
-  let check = blockSymbol[i] != "" && (blockSymbol[i] == blockSymbol[i + 3] && blockSymbol[i] == blockSymbol[i + 6]);
+  let check = blockSymbol[i] !== "" && (blockSymbol[i] === blockSymbol[i + 3] && blockSymbol[i] === blockSymbol[i + 6]);
   return check;
 }
 
 let diagCheck = function() {
-  let check = blockSymbol[0] != "" && (blockSymbol[0] == blockSymbol[4] && blockSymbol[0] == blockSymbol[8]);
-  check = check || (blockSymbol[2] != "" && (blockSymbol[2] == blockSymbol[4] && blockSymbol[2] == blockSymbol[6]));
+  let check = blockSymbol[0] !== "" && (blockSymbol[0] === blockSymbol[4] && blockSymbol[0] === blockSymbol[8]);
+  check = check || (blockSymbol[2] !== "" && (blockSymbol[2] === blockSymbol[4] && blockSymbol[2] === blockSymbol[6]));
   return check;
 }
 
@@ -65,7 +65,7 @@ function checkWin() {
 
 function boardDraw(playedSymbol){
   for(let i = 0; i < playedSymbol.length; i++){
-      if(playedSymbol[i] == ""){
+      if(playedSymbol[i] === ""){
           return false;
       }
   }
