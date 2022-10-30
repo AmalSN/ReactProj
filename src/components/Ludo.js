@@ -1,6 +1,7 @@
 import React from 'react'
 import './Ludo.css'
 export default function Ludo() {
+
   return (
     <div>
       <div className="Page">

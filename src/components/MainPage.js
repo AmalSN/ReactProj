@@ -1,5 +1,6 @@
 import React from 'react'
 import mainstyle from "./MainPage.module.css"
+import Carousel from "./Carousel.js"
 import $ from 'jquery';
 // import "../pages/Hello.js"
 const MainPage = () => {
@@ -34,27 +35,9 @@ const MainPage = () => {
                             className="bg-dark" aria-label="Slide 3"></button>
                     </div>
                     <div className="carousel-inner">
-                        <div className="carousel-item active">
-                            <img src="./TicTacToe_pic.jpg" className={`d-block w-100 ${mainstyle.imgChange}`} alt=""/>
-                            <div className="carousel-caption d-none d-md-block text-dark bg-light box-transparent">
-                                <h5>Tic-Tac-Toe</h5>
-                                <p className="d-none d-lg-block">Show us if you can get 3 in a row</p>
-                            </div>
-                        </div>
-                        <div className="carousel-item">
-                            <img src="./SnakeLadder_pic.jpg" className={`d-block w-100 ${mainstyle.imgChange}`} alt=""/>
-                            <div className="carousel-caption d-none d-md-block text-dark bg-light box-transparent">
-                                <h5>Snake and Ladder</h5>
-                                <p className="d-none d-lg-block">Beware of Snakes!!</p>
-                            </div>
-                        </div>
-                        <div className="carousel-item">
-                            <img src="./Ludo_pic.jpg" className={`d-block w-100 ${mainstyle.imgChange}`} alt=""/>
-                            <div className="carousel-caption d-none d-md-block text-dark bg-light box-transparent">
-                                <h5>Ludo</h5>
-                                <p className="d-none d-lg-block">Reach home safely!!</p>
-                            </div>
-                        </div>
+                        <Carousel game="tic"/>
+                        <Carousel game="snake"/>
+                        <Carousel game="ludo"/>
                     </div>
                     <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
                         data-bs-slide="prev">
