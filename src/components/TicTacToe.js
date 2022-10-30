@@ -21,11 +21,11 @@ let blockSymbol = ["","","","","","","","",""];
 let currentSymbol = "X";
 
 let drawSymbol = (pos) => {
-  if(!($("#"+pos).hasClass("occupied"))){
+  if(!($("#"+pos).hasClass("ticoccupied"))){
       $("#"+pos).text(currentSymbol);
       blockSymbol[blockNumbering[$("#"+pos).attr("id")]] = currentSymbol;
       console.log(blockSymbol);
-      $("#"+pos).addClass("occupied");
+      $("#"+pos).addClass("ticoccupied");
       if(checkWin()){
           $(".winner-text").text("Player " + currentSymbol + " Wins!!");
           on();
@@ -90,7 +90,7 @@ function on(){
 function resetBoard() {
   currentSymbol = "X";
   blockSymbol = ["","","","","","","","",""];
-  $(".block").removeClass("occupied");
+  $(".block").removeClass("ticoccupied");
   $(".block").text("");
   // socket.emit("reloadT");
 }
