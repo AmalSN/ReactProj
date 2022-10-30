@@ -1,166 +1,113 @@
-import React from 'react'
-// import './Contact.css'
-import $ from 'jquery';
-export default function Contact() {
+import React, { useState } from "react";
+import styles from "./Form.module.css";
 
-    
-    $(function() {
-    
-        'use strict';
-    
-        // Form
-    
-        var contactForm = function() {
-    
-            if ($('#contactForm').length > 0 ) {
-                $( "#contactForm" ).validate( {
-                    rules: {
-                        name: "required",
-                        email: {
-                            required: true,
-                            email: true
-                        },
-                        message: {
-                            required: true,
-                            minlength: 5
-                        }
-                    },
-                    messages: {
-                        name: "Please enter your name",
-                        email: "Please enter a valid email address",
-                        message: "Please enter a message"
-                    },
-                    /* submit via ajax */
-                    submitHandler: function(form) {		
-                        var $submit = $('.submitting'),
-                            waitText = 'Submitting...';
-    
-                        $.ajax({   	
-                          type: "POST",
-                          url: "php/send-email.php",
-                          data: $(form).serialize(),
-    
-                          beforeSend: function() { 
-                              $submit.css('display', 'block').text(waitText);
-                          },
-                          success: function(msg) {
-                           if (msg === 'OK') {
-                               $('#form-message-warning').hide();
-                                setTimeout(function(){
-                                   $('#contactForm').fadeOut();
-                               }, 1000);
-                                setTimeout(function(){
-                                   $('#form-message-success').fadeIn();   
-                               }, 1400);
-                               
-                            } else {
-                               $('#form-message-warning').html(msg);
-                                $('#form-message-warning').fadeIn();
-                                $submit.css('display', 'none');
-                            }
-                          },
-                          error: function() {
-                              $('#form-message-warning').html("Something went wrong. Please try again.");
-                             $('#form-message-warning').fadeIn();
-                             $submit.css('display', 'none');
-                          }
-                      });    		
-                      }
-                    
-                } );
-            }
-        };
-        contactForm();
-    
-    });
+const emailValidator = (email) => {
+  return email.match(
+    /^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  );
+};
+
+const Form = () => {
+  const [name, setName] = useState("");
+  const [mail, setMail] = useState("");
+  const [msg, setMsg] = useState("");
+
+  const nameHandler = (e) => {
+    setName(e.target.value);
+  };
+
+  const emailHandler = (e) => {
+    setMail(e.target.value);
+  };
+
+  const msgHandler = (e) => {
+    setMsg(e.target.value);
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (name.length < 4) {
+      alert("Name should contain atleast 4 chars");
+      return;
+    }
+    if (emailValidator(mail) ) {
+      alert("Invalid email");
+      return;
+    }
+    if (msg.length === 0) {
+      alert("Message cannot be empty");
+      return;
+    }
+    alert("Success");
+  };
 
   return (
-    <div className="contactbody">
-      <div className="content">
-
-<div className="container">
-    <div className="row align-items-stretch no-gutters contact-wrap">
-        <div className="col-md">
-            <div className="form h-100">
-                <h3>Send us a message</h3>
-                <form action="/sendMail" method="POST" className="mb-5">
-                    <div className="row">
-                        <div className="col-md-6 form-group mb-5">
-                            <label htmlFor="" className="col-form-label">Name *</label>
-                            <input type="text" className="form-control" name="name" id="name"
-                                placeholder="Username"/>
-                        </div>
-                        <div className="col-md-6 form-group mb-5">
-                            <label htmlFor="" className="col-form-label">Email *</label>
-                            <input type="text" className="form-control" name="email" id="email"
-                                placeholder="Your email"/>
-                        </div>
-                    </div>
-
-                    <div className="row">
-                        <div className="col-md-6 form-group mb-5">
-                            Did you contact us before? <br/>
-                            <ul className="list">
-                                <li className="list__item">
-                                    <label className="label--radio">
-                                        <input type="radio" className="radio" checked name="foo"/>
-                                        Yes
-                                    </label>
-                                </li>
-                                <li className="list__item">
-                                    <label className="label--radio">
-                                        <input type="radio" className="radio" name="foo"/>
-                                        No
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="col-md-6 form-group mb-5">
-                            Are you a member? <br/>
-                            <ul className="list">
-                                <li className="list__item">
-                                    <label className="label--radio">
-                                        <input type="radio" className="radio" checked name="foo"/>
-                                        Yes
-                                    </label>
-                                </li>
-                                <li className="list__item">
-                                    <label className="label--radio">
-                                        <input type="radio" className="radio" name="foo"/>
-                                        No
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className="row">
-                        <div className="col-md-12 form-group mb-5">
-                            <label htmlFor="message" className="col-form-label">Message *</label>
-                            <textarea className="form-control" name="message" id="message" cols="30" rows="4"
-                                placeholder="Elaborate your concern :-"></textarea>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12 form-group">
-                            <button type="submit" value="Submit"
-                                className="btn btn-primary rounded-0 py-2 px-4">Submit</button>
-                            <span className="submitting"></span>
-                        </div>
-                    </div>
-                </form>
-
-                <div id="form-message-warning mt-4"></div>
-                <div id="form-message-success">
-                    Your message was sent, thank you!
-                </div>
-
-            </div>
+    <div className={styles.background}>
+      <form className={styles.card} onSubmit={submitHandler}>
+        <h2>Send us a message</h2>
+        <div className={styles.line}>
+          <div className={styles.field}>
+            <label>
+              Name
+              <sup>*</sup>
+            </label>
+            <input type="text" placeholder="Username" onChange={nameHandler} />
+          </div>
+          <div className={styles.field}>
+            <label>
+              Email
+              <sup>*</sup>
+            </label>
+            <input
+              type="email"
+              placeholder="Your Email"
+              onChange={emailHandler}
+            />
+          </div>
         </div>
+        <div className={styles.line}>
+          <div className={styles.field}>
+            <label>Did You Contact us before?</label>
+            <div className={styles.radio}>
+              <input type="radio" name="contact"></input>
+              <label>Yes</label>
+            </div>
+            <div className={styles.radio}>
+              <input type="radio" name="contact"></input>
+              <label>No</label>
+            </div>
+          </div>
+          <div className={styles.field}>
+            <label>Are you a member?</label>
+            <div className={styles.radio}>
+              <input type="radio" name="contact"></input>
+              <label>Yes</label>
+            </div>
+            <div className={styles.radio}>
+              <input type="radio" name="contact"></input>
+              <label>No</label>
+            </div>
+          </div>
+        </div>
+        <div className={styles.msg}>
+          <div className={styles.field}>
+            <label>
+              Message
+              <sup>*</sup>
+            </label>
+            <input
+              type="text"
+              placeholder="Elaborate your concern"
+              onChange={msgHandler}
+            />
+          </div>
+        </div>
+        <div className={styles.btn}>
+          <button>SUBMIT</button>
+        </div>
+      </form>
+    </div>
+  );
+};
 
-    </div>
-</div>
-</div>
-    </div>
-  )
-}
+export default Form;
