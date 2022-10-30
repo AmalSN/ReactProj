@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from  "react-router-dom";
 
 
-const Navbar = ({active, setActive}) => {
+const Navbar = ({active, setActive, curruser}) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
     <div className="container-fluid offset-md-4">
@@ -49,7 +49,7 @@ const Navbar = ({active, setActive}) => {
                     {/* <span className={active==="Signup"?"nav-link active":"nav-link"} onClick={() => {setActive(active = "Signup")}}>Sign-Up</span> */}
                 </li>
                 <li className="nav-item">
-                <Link className={active==="Login"?"nav-link active":"nav-link"} aria-current="page" to="/join-us/login" onClick={() => {setActive(active = "Login")}}>Login</Link>
+                <Link className={active==="Login"?"nav-link active":"nav-link"} aria-current="page" to="/join-us/login" onClick={() => {setActive(active = "Login")}}>{curruser===""?"Login":curruser}</Link>
                     {/* <% if(loggedUser == undefined){ %>
                         <Link className={active==="Login"?"nav-link active":"nav-link"} aria-current="page" to="/join-us/login">Login</Link>
                     <% }else{ %>

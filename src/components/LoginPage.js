@@ -1,8 +1,30 @@
 import React from "react";
 import lgpg from "./LoginPage.module.css"
-export default function LoginPage() {
+import {useState} from "react"
 
-  
+export default function LoginPage({users,curruser,setCurruser}) {
+
+  const [inputs, setInputs] = useState({});
+
+    const handleChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs(values => ({...values, [name]: value}))
+      }
+
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      let flag=0
+      users.forEach((x)=>{
+        if(x.uName===inputs.uName&&x.password===inputs.password){
+          flag=1;
+          setCurruser(curruser=inputs.uName)
+        }
+      })
+      if(!flag){
+        alert("Wrong Credentials")
+      }
+    }
 
   return (
     <div className={lgpg.bgimage}>
@@ -42,8 +64,7 @@ export default function LoginPage() {
               <form
                 id="emailForm"
                 className="form-horizontal"
-                action="/join-us/loginCheck"
-                method="POST"
+                onSubmit={handleSubmit}
               >
                 <div className="form-floating mb-3">
                   <input
@@ -54,6 +75,7 @@ export default function LoginPage() {
                     placeholder="name@example.com"
                     size="30"
                     required
+                    onChange={handleChange}
                   />
                   <label htmlFor="floatingInput">Username</label>
                 </div>
@@ -65,6 +87,7 @@ export default function LoginPage() {
                     name="password"
                     id="password"
                     placeholder="Password"
+                    onChange={handleChange}
                   />
                   <label htmlFor="floatingPassword">Password</label>
                   <br />

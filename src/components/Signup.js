@@ -1,10 +1,35 @@
 import React from 'react'
 import sgpg from './Signup.module.css'
+import { useState } from "react";
 
-export default function Signup() {
+export default function Signup({users,setUsers}) {
+
+    const [inputs, setInputs] = useState({});
+
+    const handleChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs(values => ({...values, [name]: value}))
+      }
+    
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        let flag=1;
+        users.forEach((x)=>{
+            if(x.uName===inputs.uName){
+                alert("Username already exists")
+                flag=0;
+            }
+        })
+        if(flag){
+            setUsers([...users, inputs])
+        }
+        console.log(users);
+    }
+
   return (
    <div className={sgpg.bgimage}>
-       <div className="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div className="modal" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -22,26 +47,26 @@ export default function Signup() {
         <div className={`container ${sgpg.sgpgcontainer} overflow-hidden`}>
                     <div className="row gx-5">
                         <div className="col">
-                            <form action="/join-us/login" method="POST">
+                            <form onSubmit={handleSubmit}>
                                 <div className="p-5 border bg-light">
                                     <h1 className={`${sgpg.sgpgh3} mb-3 fw-normal`}>Sign-Up Here</h1>
                                     <div className="row">
                                         <div className="col">
                                             <input type="text" className="form-control" placeholder="First name"
                                                 aria-label="First name" name="fName" id="fName" required
-                                                onblur="check()"/>
+                                                onChange={handleChange}/>
                                         </div>
                                         <div className="col">
                                             <input type="text" className="form-control" placeholder="Last name"
                                                 aria-label="Last name" name="lName" id="lName" required
-                                                onblur="check()"/>
+                                                onChange={handleChange}/>
                                         </div>
                                     </div><br/>
 
                                     <div className="row">
                                         <div className="col">
                                             <select id="gender" className="form-select" name="gender"
-                                                placeholder="Gender" onblur="check()">
+                                                placeholder="Gender" onChange={handleChange}>
                                                 <option value="M">Male</option>
                                                 <option value="F">Female</option>
                                                 <option value="O">Other</option>
@@ -52,26 +77,26 @@ export default function Signup() {
                                         <div className="col">
 
                                             <input type="number" className="form-control" id="age" placeholder="Age"
-                                                name="age" onblur="check()"/>
+                                                name="age" onChange={handleChange}/>
                                         </div>
 
                                     </div><br/>
 
                                     <div className="col">
                                         <input type="username" className="form-control" id="uName" placeholder="Username"
-                                            size="30" name="uName" required onblur="check()"/>
+                                            size="30" name="uName" required onChange={handleChange}/>
                                     </div><br/>
                                     <div className="col">
                                         <input type="email" className="form-control" id="email" placeholder="Email"
-                                            size="30" name="email" required onblur="check()"/>
+                                            size="30" name="email" required onChange={handleChange}/>
                                     </div><br/>
                                     <div className="col">
                                         <input type="password" className="form-control" id="password" placeholder="Password"
-                                            name="password" required onblur="check()"/>
+                                            name="password" required onChange={handleChange}/>
                                         <br/>
                                         <input type="password" className="form-control" id="passwordConfirm"
                                             placeholder="Confirm-Password" name="passwordConfirm" required
-                                            onblur="check()"/>
+                                            onChange={handleChange}/>
                                         <br/>
                                     </div>
                                     <button className="col-md-12 text-center btn btn-outline-success" type="submit"
