@@ -1,11 +1,11 @@
-.bg-image {
+.bgimage {
     background-image: url(/public/bg.avif);
     height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.container {
+.sgpgcontainer {
 
     position: absolute;
     top: 58%;
@@ -22,7 +22,7 @@
 
 
 
-.h3 {
+.sgpgh3 {
     text-align: center;
     color: brown;
 

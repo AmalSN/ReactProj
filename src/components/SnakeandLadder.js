@@ -87,7 +87,7 @@ export default function SnakeandLadder() {
 
 <div className={`${snk.allclasses} main-container container-fluid py-4`}>
     <div className="row">
-        <div className={`${snk.boardcontainer} col-6 ${snk.movToLeft}`}>
+        <div className={`${snk.boardcontainer} col-6`}>
             <div className={`${snk.board} ${snk.relativecontainer}`}>
                 <img alt="" src="/snake.png" className={snk.snakePic} id={snk.snake1}/>
                 <img alt="" src="/snake.png" className={snk.snakePic} id={snk.snake2}/>
@@ -110,7 +110,7 @@ export default function SnakeandLadder() {
                 
             </div>
         </div>
-        <div className={`${snk.dicecontainer} col-6 ${snk.movToRight}`}>
+        <div className={`${snk.dicecontainer} col-6`}>
             <div className="container">
                 <div className="row">
                     <Dice num={1}/>

@@ -72,13 +72,13 @@ const MainPage = () => {
                 <h1 className={`text-center my-auto d-none d-sm-none d-md-none d-lg-block ${mainstyle.fontSpecial}`}>Board Nights</h1>
             </div>
             <div className="col-4">
-                <div className="card bg-warning my-4 mx-auto" style={{width: 18 + "rem"}}>
+                {/* <div className="card bg-warning my-4 mx-auto" style={{width: 18 + "rem"}}>
                     <div className="card-body">
                         <h5 className="card-title">LeaderBoards</h5>
                         <p className="card-text">Compete with best and try to come in the top 100.</p>
-                        {/* <a href="/leaderboard/tic-tac-toe" className="btn d-block" style="background-color: brown;">Go to Leaderboard</a> */}
+                        <a href="/leaderboard/tic-tac-toe" className="btn d-block" style="background-color: brown;">Go to Leaderboard</a>
                     </div>
-                </div>
+                </div> */}
                 <div className="card bg-warning my-4 mx-auto" style={{width: 18 + "rem"}}>
                     <div className="card-body">
                         <h5 name="card-title">Statistics</h5>

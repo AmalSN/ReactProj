@@ -1,9 +1,9 @@
 import React from 'react'
-import './Signup.css'
+import sgpg from './Signup.module.css'
 
 export default function Signup() {
   return (
-   <div>
+   <div className={sgpg.bgimage}>
        <div className="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
@@ -19,12 +19,12 @@ export default function Signup() {
             </div>
         </div>
 
-        <div className="container overflow-hidden">
+        <div className={`container ${sgpg.sgpgcontainer} overflow-hidden`}>
                     <div className="row gx-5">
                         <div className="col">
                             <form action="/join-us/login" method="POST">
                                 <div className="p-5 border bg-light">
-                                    <h1 className="h3 mb-3 fw-normal">Sign-Up Here</h1>
+                                    <h1 className={`${sgpg.sgpgh3} mb-3 fw-normal`}>Sign-Up Here</h1>
                                     <div className="row">
                                         <div className="col">
                                             <input type="text" className="form-control" placeholder="First name"
@@ -83,7 +83,7 @@ export default function Signup() {
                             </form>
                         </div>
                         <div className="col">
-                            <div id="ctr">
+                            <div id={sgpg.ctr}>
                                 <div className="p-3 border bg-Dark">
                                     <div id="carouselExampleFade" className="carousel slide carousel-fade"
                                         data-bs-ride="carousel">
