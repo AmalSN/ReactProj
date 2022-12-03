@@ -22,7 +22,7 @@ function UserInfo() {
     
     <div className = "form-container">
       <Form className='body' onSubmit={handleSubmit}>
-        <h3>Amal bsdk</h3>
+        <h3>Amal S N</h3>
       <hr className="my-4 hr" />
         <Form.Group className="mb-3 ">
         <Form.Label>First Name</Form.Label>

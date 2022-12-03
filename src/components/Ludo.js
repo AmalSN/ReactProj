@@ -2,6 +2,82 @@ import React from 'react'
 import './Ludo.css'
 export default function Ludo() {
 
+    let chance=0;
+    let rollbtn=document.getElementById("dice-btn");
+
+    function rollDice() {
+        console.log("rolled");  
+       rollbtn.style.display="none";
+        if(chance==0){
+           
+            allColour=allGreen;
+            colour='g';
+           
+           
+        }
+         if(chance==1){
+            
+            allColour=allYellow;
+            colour='y';
+            
+           
+        }
+         if(chance==2){
+          
+            allColour=allBlue;
+            colour='b';
+            
+            
+        }
+        if(chance==3){
+           
+            allColour=allRed;
+            colour='r';
+          
+           
+        }
+        
+        console.log(colour);
+        incrementChance();
+         diceOne = Math.floor((Math.random() * 6) + 1);
+         
+    
+        for (let i = 1; i <= 6; i++) {
+            elDiceOne.classList.remove('show-' + i);
+            if (diceOne === i) {
+                elDiceOne.classList.add('show-' + i);
+            }
+        }
+        let noMove=true;
+        Array.from(allColour).forEach((e)=>{
+            let currPos=String(e.classList[1]).slice(3);
+            if((Number(currPos)+diceOne)<=57){
+                
+                e.classList.add("active");
+                console.log(e.classList);
+                e.addEventListener('click',move,true);
+                noMove=false;
+            }
+        });
+        
+        if(noMove){
+            if(chance==0){
+                chanceText.textContent="Chance of Green";
+               }
+               else if(chance==1){
+                chanceText.textContent="Chance of Yellow";
+               }
+               else if(chance==2){
+                chanceText.textContent="Chance of Blue";
+               }
+               else{
+                chanceText.textContent="Chance of Red";
+               }
+               rollbtn.style.display="inline-block";
+        }
+        
+    }
+
   return (
     <div>
       <div className="Page">

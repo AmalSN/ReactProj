@@ -19,6 +19,7 @@ export default function LoginPage({users,curruser,setCurruser}) {
         if(x.uName===inputs.uName&&x.password===inputs.password){
           flag=1;
           setCurruser(curruser=inputs.uName)
+          alert("Welcome"+inputs.uName)
         }
       })
       if(!flag){

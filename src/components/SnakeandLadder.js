@@ -1,7 +1,7 @@
 import React from 'react'
 import snk from './SnakeandLadder.module.css'
 import SnakeBlock from './SnakeBlock.js'
-import { useState } from 'react'
+import $ from 'jquery'
 import Dice from './Dice.js'
 
 export default function SnakeandLadder() {
@@ -35,21 +35,96 @@ export default function SnakeandLadder() {
     };
     let playerPosition = [1, 1, 1, 1];
 
+    let on = () => {
+        $(`${snk.overlay}`).css("display","flex");
+        window.location.reload();
+    }
+
+    let off = () => {
+        $(`${snk.overlay}`).css("display","on");
+    }
+
+    function changeColor(){
+        if(currentColor === "red"){
+          $(`#${snk['turnindicator']}`).removeClass(`${snk.redpiececolor}`);
+          $(`#${snk['turnindicator']}`).addClass(`${snk.bluepiececolor}`);
+          $(`#${snk['turnindicator']}`).text("Blue Player's Turn");
+          currentColor = "blue";
+        }
+        else if(currentColor === "blue"){
+          $(`#${snk['turnindicator']}`).removeClass(`${snk.bluepiececolor}`);
+          $(`#${snk['turnindicator']}`).addClass(`${snk.yellowpiececolor}`);
+          $(`#${snk['turnindicator']}`).text("Yellow Player's Turn");
+          currentColor = "yellow";
+        }
+        else if(currentColor === "yellow"){
+          $(`#${snk['turnindicator']}`).removeClass(`${snk.yellowpiececolor}`);
+          $(`#${snk['turnindicator']}`).addClass(`${snk.greenpiececolor}`);
+          $(`#${snk['turnindicator']}`).text("Green Player's Turn");
+          currentColor = "green";
+        }
+        else{
+          $(`#${snk['turnindicator']}`).removeClass(`${snk.greenpiececolor}`);
+          $(`#${snk['turnindicator']}`).addClass(`${snk.redpiececolor}`);
+          $(`#${snk['turnindicator']}`).text("Red Player's Turn");
+          currentColor = "red";
+        }
+      }
+
+    function pieceMovement(pieceColor, spotsMoved){
+        let pos = colorNumbering[pieceColor];
+        let pieceColorList = [snk.redpiececolor,snk.bluepiececolor,snk.yellowpiececolor,snk.greenpiececolor];
+        if(playerPosition[pos] + spotsMoved <= 100){
+          $(`.block${playerPosition[pos]} .${pieceColorList[pos]}`).html("");
+          playerPosition[pos] += spotsMoved;
+          $(`.block${playerPosition[pos]} .${pieceColorList[pos]}`).html(`<img src='/${pieceColor.toLowerCase()}Pawn.png'>`);
+          
+          for(let i = 0; i < snakeList.length; i++){
+            if(playerPosition[pos] === snakeList[i][0]){
+              $(`.block${playerPosition[pos]} .${pieceColorList[pos]}`).html("");
+              playerPosition[pos] = snakeList[i][1];
+              $(`.block${playerPosition[pos]} .${pieceColorList[pos]}`).html(`<img src='/${pieceColor.toLowerCase()}Pawn.png'>`);
+              break;
+            }      
+          }
+          for(let i = 0; i < ladderList.length; i++){
+            if(playerPosition[pos] === ladderList[i][0]){
+              $(`.block${playerPosition[pos]} .${pieceColorList[pos]}`).html("");
+              playerPosition[pos] = ladderList[i][1];
+              $(`.block${playerPosition[pos]} .${pieceColorList[pos]}`).html(`<img src='/${pieceColor.toLowerCase()}Pawn.png'>`);
+              break;
+            }      
+          }
+          if(playerPosition[pos] === 100){
+            $(".winner-text").text(currentColor[0].toUpperCase()+currentColor.slice(1)+" wins!!");
+            // socket.emit("winS", {x: currentColor, y: $("#loggedUser").text().slice(25,-21)});
+            on();
+          }
+          else{
+            console.log(turnOrder);
+            // socket.emit("moveS", {x: playerPosition, y: turnOrder});
+          }
+        }
+        changeColor();
+        console.log(playerPosition);
+      }
+
     function rollDice() {
 
-        let elDiceOne = document.getElementsByClassName('dce1');
+        let elDiceOne = document.querySelector('.dce1');
         let diceOne   = Math.floor((Math.random() * 6) + 1);
        
         console.log(diceOne);
       
-        // for (let i = 1; i <= 6; i++) {
-        //   elDiceOne.classList.remove(`${snk.show}`);
-        //   if (diceOne === i) {
-        //     elDiceOne.classList.add('show-' + i);
-        //   }
-        // }
+        let faceClassList = [snk.show1,snk.show2,snk.show3,snk.show4,snk.show5,snk.show6];
+        for (let i = 1; i <= 6; i++) {
+          elDiceOne.classList.remove(faceClassList[i-1]);
+          if (diceOne === i) {
+            elDiceOne.classList.add(faceClassList[i-1]);
+          }
+        }
       
-        // pieceMovement(currentColor, diceOne);
+        pieceMovement(currentColor, diceOne);
       }
 
     let generateBoard = () => {
@@ -58,11 +133,11 @@ export default function SnakeandLadder() {
         for(let y = 0; y < 5; y++){
             for(let x = 0; x < 10; x++){
               cnt--;
-              blocksInBoard.push(<SnakeBlock cnt={cnt}/>)
+              blocksInBoard.push(<SnakeBlock key={cnt} cnt={cnt}/>)
             }
             cnt -= 10;
             for(let x = 0; x < 10; x++){
-                blocksInBoard.push(<SnakeBlock cnt={cnt}/>)
+                blocksInBoard.push(<SnakeBlock key={cnt} cnt={cnt}/>)
                 cnt++;
             }
             cnt -= 10
@@ -72,18 +147,15 @@ export default function SnakeandLadder() {
 
 
 
-
-
   return (
       <div style={{backgroundColor: "burlywood"}}>
 
-{/* <div className="" id="freezeScreen"></div>
-<div className="overlay" onClick="off()">
-    <div className="display-winner"><span className="winner-text"></span></div>
-    <div className="restart-message"><span className="restart-text">Click anywhere on the screen to play again</span>
+<div className="" id="freezeScreen"></div>
+<div className={`${snk.overlay}`} onClick={off()}>
+    <div className={`${snk.displaywinner}`}><span className="winner-text"></span></div>
+    <div className={`${snk.restartmessage}`}><span className="restart-text">Click anywhere on the screen to play again</span>
     </div>
-</div> */}
-{/* <%- include('partial/navbar', {active: ""}); %> */}
+</div>
 
 <div className={`${snk.allclasses} main-container container-fluid py-4`}>
     <div className="row">
@@ -106,6 +178,7 @@ export default function SnakeandLadder() {
                 
                 
                 {generateBoard()}
+                {/* {initialBoardState()} */}
 
                 
             </div>

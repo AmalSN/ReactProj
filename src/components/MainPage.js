@@ -35,9 +35,9 @@ const MainPage = () => {
                             className="bg-dark" aria-label="Slide 3"></button>
                     </div>
                     <div className="carousel-inner">
-                        <Carousel game="tic"/>
-                        <Carousel game="snake"/>
-                        <Carousel game="ludo"/>
+                        <Carousel game="tic" text="Show us if you can get 3 in a row"/>
+                        <Carousel game="snake" text="Climb Ladders and get bitten by snakes"/>
+                        <Carousel game="ludo" text="Race to your home with all four pieces"/>
                     </div>
                     <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
                         data-bs-slide="prev">
