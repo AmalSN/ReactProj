@@ -4,7 +4,7 @@ function check(){
     let email = $("#email").val();
     let password = $("#password").val();
     let confirmPassword = $("#passwordConfirm").val();
-    if(username.length >= 6 && password.length >= 6 && password === confirmPassword && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
+    if(username.length >= 6 && password.length >= 6 && password == confirmPassword && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
         $("#signup-button").removeAttr("disabled");
     }
     else {

@@ -14,13 +14,7 @@ function UserInfo() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(inputs.newpass===inputs.confirmpass){
-      let str = "Name: "+inputs.firstname+" "+inputs.lastname+"\n Email: "+inputs.email+"\n Old Pass.: "+inputs.oldpass+"\n New Pass.: "+inputs.newpass+"\n Confirm Pass.: "+inputs.confirmpass;
-      alert(str);
-    }
-    else{
-      alert("Wrong password");
-    }
+    console.log(inputs);
   };
 
   return (
@@ -58,7 +52,7 @@ function UserInfo() {
             name="email"
             value={inputs.email || ""}
             onChange={handleChange} 
-            pattern="/[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g" required />
+            pattern=" /[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g" required />
         </Form.Group>
 
         <hr className="my-4 hr" />

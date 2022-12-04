@@ -15,8 +15,7 @@ function UserInfo() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if(inputs.newpass===inputs.confirmpass){
-      let str = "Name: "+inputs.firstname+" "+inputs.lastname+"\n Email: "+inputs.email+"\n Old Pass.: "+inputs.oldpass+"\n New Pass.: "+inputs.newpass+"\n Confirm Pass.: "+inputs.confirmpass;
-      alert(str);
+      alert(inputs.firstname);
     }
     else{
       alert("Wrong password");

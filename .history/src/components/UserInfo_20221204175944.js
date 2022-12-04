@@ -2,10 +2,21 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./UserInfo.css";
 import React, { useState } from "react";
-// import validator from "validator";
+import validator from "validator";
 
 function UserInfo() {
   const [inputs, setInputs] = useState({});
+  const [message, setMessage] = useState("");
+  const validateEmail = (e) => {
+    const email = e.target.value;
+
+    if (validator.isEmail(email)) {
+      setMessage("Thank you");
+    } else {
+      setMessage("Please, enter valid Email!");
+    }
+  };
+
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -14,13 +25,7 @@ function UserInfo() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(inputs.newpass===inputs.confirmpass){
-      let str = "Name: "+inputs.firstname+" "+inputs.lastname+"\n Email: "+inputs.email+"\n Old Pass.: "+inputs.oldpass+"\n New Pass.: "+inputs.newpass+"\n Confirm Pass.: "+inputs.confirmpass;
-      alert(str);
-    }
-    else{
-      alert("Wrong password");
-    }
+    console.log(inputs);
   };
 
   return (
@@ -57,8 +62,20 @@ function UserInfo() {
             placeholder="Enter email"
             name="email"
             value={inputs.email || ""}
-            onChange={handleChange} 
-            pattern="/[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g" required />
+            onChange={(e) => {
+              handleChange();
+              validateEmail(e);
+            }}
+          />
+          <br />
+          <span
+            style={{
+              fontWeight: "bold",
+              color: "red",
+            }}
+          >
+            {message}
+          </span>
         </Form.Group>
 
         <hr className="my-4 hr" />
