@@ -2,34 +2,198 @@ import React from 'react'
 import './Ludo.css'
 export default function Ludo() {
 
+    let diceOne;
+    // let rank=1;
+    let gcount=0;
+    let ycount=0;
+    let rcount=0;
+    let bcount=0;
+
+    // let gwon=false;
+    // let ywon=false;
+    // let bwon=false;
+    // let rwon=false;
+
     let chance=0;
-    let rollbtn=document.getElementById("dice-btn");
+    let playerSize=4;
+    let allColour;
+    let colour;
+    let no_of_players_won = 0;
+
+    function incrementChance(){
+        chance=(chance+1)%playerSize;
+    }
+
+
+    function move(e){
+
+        // let allGreen=document.getElementsByClassName("pg");
+        // let allYellow=document.getElementsByClassName("py");
+        // let allRed=document.getElementsByClassName("pr");
+        // let allBlue=document.getElementsByClassName("pb");
+        let chanceText=document.getElementById("chance");
+        let rollbtn=document.getElementById("dice-btn");
+        // let elDiceOne = document.getElementById('dice1');
+
+        let flag = 0;
+    
+        console.log(e.target);
+        let player=e.target;
+        let home=document.querySelector(`.${colour}57`);
+        let currClass=player.classList[1];
+        let currPos=String(currClass).slice(3);
+        console.log(currPos);
+       
+        if(Number(currPos)===57){
+            return;
+        }
+        
+        else if((Number(currPos)+diceOne)===57){
+        
+            player.classList.remove(currClass);
+            player.classList.add(`sp${colour}57`);
+           
+            player.parentElement.removeChild(player);
+            
+            home.appendChild(player);
+    
+    //         <div class="modal" tabindex="-1" role="dialog">
+    //   <div class="modal-dialog" role="document">
+    //     <div class="modal-content">
+    //       <div class="modal-header">
+    //         <h5 class="modal-title">Modal title</h5>
+    //         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    //           <span aria-hidden="true">&times;</span>
+    //         </button>
+    //       </div>
+    //       <div class="modal-body">
+    //         <p>Modal body text goes here.</p>
+    //       </div>
+    //       <div class="modal-footer">
+    //         <button type="button" class="btn btn-primary">Save changes</button>
+    //         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
+            // checking whose chance it was
+            if((chance-1+playerSize)%playerSize===0){
+                gcount++;
+                if(gcount===4){
+                    no_of_players_won++;
+                    if(no_of_players_won===playerSize){
+                        let restart=window.confirm("Red Won, Do You Want to restart the game?");
+                        if(restart){
+                            window.location.reload();
+                        }
+                    }
+                }
+            }
+            else if((chance-1+playerSize)%playerSize===1){
+                ycount++;
+                if(ycount===4){
+                        let restart=window.confirm("Yellow Won, Do You Want to restart the game?");
+                        if(restart){
+                            window.location.reload();
+                        }
+                    }
+                
+            }
+            else if((chance-1+playerSize)%playerSize===2){
+                bcount++;
+                if(bcount===4){
+                        let restart=window.confirm("Game Over, Do You Want to restart the game?");
+                        if(restart){
+                            window.location.reload();
+                        }
+                    
+                }
+            }
+            else {
+                rcount++;
+                if(rcount===4){
+                        let restart=window.confirm("Game Over, Do You Want to restart the game?");
+                        if(restart){
+                            window.location.reload();
+                        }
+                    
+                }
+            }
+    
+    
+        }
+        
+       else if((Number(currPos)+diceOne)<57){
+           flag=1;
+        player.classList.remove(currClass);
+        let newPos=Number(currPos)+diceOne;
+        console.log(newPos);
+        let newClass=`sp${colour}${newPos}`;
+        let newParentClass=`${colour}${newPos}`;
+        player.className=`${player.classList[0]} ${newClass} ${player.classList[1]}`
+        console.log(player.classList);
+        let newParent=document.querySelector(`.${newParentClass}`);
+       
+        
+        player.parentElement.removeChild(player);
+        newParent.appendChild(player);
+       }
+       Array.from(allColour).forEach((e)=>{
+        e.removeEventListener('click',move);
+        e.classList.remove("active");
+       })
+       if(chance===0){
+        chanceText.textContent="Chance of Green";
+       }
+       else if(chance===1){
+        chanceText.textContent="Chance of Yellow";
+       }
+       else if(chance===2){
+        chanceText.textContent="Chance of Blue";
+       }
+       else{
+        chanceText.textContent="Chance of Red";
+       }
+       rollbtn.style.display="inline-block";
+       if(flag===1){
+        // socket.emit("moveL",{x: document.querySelector(".Page").innerHTML, y: turnOrder});
+       }
+    }
 
     function rollDice() {
+        let allGreen=document.getElementsByClassName("pg");
+        let allYellow=document.getElementsByClassName("py");
+        let allRed=document.getElementsByClassName("pr");
+        let allBlue=document.getElementsByClassName("pb");
+        let chanceText=document.getElementById("chance");
+        let rollbtn=document.getElementById("dice-btn");
+        let elDiceOne = document.getElementById('dice1');
+    
+
         console.log("rolled");  
        rollbtn.style.display="none";
-        if(chance==0){
+        if(chance===0){
            
             allColour=allGreen;
             colour='g';
            
            
         }
-         if(chance==1){
+         if(chance===1){
             
             allColour=allYellow;
             colour='y';
             
            
         }
-         if(chance==2){
+         if(chance===2){
           
             allColour=allBlue;
             colour='b';
             
             
         }
-        if(chance==3){
+        if(chance===3){
            
             allColour=allRed;
             colour='r';
@@ -61,13 +225,13 @@ export default function Ludo() {
         });
         
         if(noMove){
-            if(chance==0){
+            if(chance===0){
                 chanceText.textContent="Chance of Green";
                }
-               else if(chance==1){
+               else if(chance===1){
                 chanceText.textContent="Chance of Yellow";
                }
-               else if(chance==2){
+               else if(chance===2){
                 chanceText.textContent="Chance of Blue";
                }
                else{
@@ -219,7 +383,7 @@ export default function Ludo() {
                 <div className="row">
                     <div className="col-4"></div>
                     <div id='roll' className="roll">
-                        <button id="dice-btn" className="button-dice">Roll dice!</button>
+                        <button id="dice-btn" className="button-dice" onClick={rollDice}>Roll dice!</button>
                     </div>
                 </div>
                 {/* <!--Dice portion --> */}
