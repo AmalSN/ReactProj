@@ -1,12 +1,18 @@
 import React from 'react'
 import snk from './SnakeandLadder.module.css'
 import SnakeBlock from './SnakeBlock.js'
+import {useDispatch} from 'react-redux';
+import snakeWin from './../store/actions/snakeWin';
+import snakeLoss from './../store/actions/snakeLoss';
 import $ from 'jquery'
 import Dice from './Dice.js'
 
 export default function SnakeandLadder() {
 
-    
+    const dispatch = useDispatch();
+
+
+    let pieceColorList = [snk.redpiececolor,snk.bluepiececolor,snk.yellowpiececolor,snk.greenpiececolor];
     let turnOrder = 0;
     let snakeList = [
       [17, 6],
@@ -37,8 +43,20 @@ export default function SnakeandLadder() {
 
     let on = () => {
         $(`${snk.overlay}`).css("display","flex");
-        window.location.reload();
-    }
+        currentColor = "red";
+        turnOrder = 0;
+        
+        for(let i=0;i<4;i++){
+          $(`.block${playerPosition[i]} .${pieceColorList[i]}`).html("");
+        }
+        
+        playerPosition = [1, 1, 1, 1];
+        let pieceColor = ["red","blue","yellow","green"];
+
+        for(let i=0;i<4;i++){
+          $(`.block${playerPosition[i]} .${pieceColorList[i]}`).html(`<img src='/${pieceColor[i].toLowerCase()}Pawn.png'>`);
+        }  
+      }
 
     let off = () => {
         $(`${snk.overlay}`).css("display","on");
@@ -73,7 +91,6 @@ export default function SnakeandLadder() {
 
     function pieceMovement(pieceColor, spotsMoved){
         let pos = colorNumbering[pieceColor];
-        let pieceColorList = [snk.redpiececolor,snk.bluepiececolor,snk.yellowpiececolor,snk.greenpiececolor];
         if(playerPosition[pos] + spotsMoved <= 100){
           $(`.block${playerPosition[pos]} .${pieceColorList[pos]}`).html("");
           playerPosition[pos] += spotsMoved;
@@ -97,6 +114,12 @@ export default function SnakeandLadder() {
           }
           if(playerPosition[pos] === 100){
             $(".winner-text").text(currentColor[0].toUpperCase()+currentColor.slice(1)+" wins!!");
+            if(pos === 0){
+              dispatch(snakeWin());
+            }
+            else{
+              dispatch(snakeLoss());
+            }
             // socket.emit("winS", {x: currentColor, y: $("#loggedUser").text().slice(25,-21)});
             on();
           }

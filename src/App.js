@@ -6,7 +6,6 @@ import Contact from "./components/Contact";
 import SnakeandLadder from "./components/SnakeandLadder";
 import TicTacToe from "./components/TicTacToe";
 import UserInfo from "./components/UserInfo";
-import dataUsers from './database/users.json';
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import { useState } from "react";
 import './App.css';
@@ -15,14 +14,12 @@ import LoginPage from "./components/LoginPage";
 
 function App() {
   const [active,setActive] = useState("Home")
-  const [users,setUsers] = useState(dataUsers)
-  const [curruser,setCurruser] = useState("")
 
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Layout active={active} setActive={setActive} curruser={curruser}/>}>
+          <Route path="/" element={<Layout active={active} setActive={setActive}/>}>
             <Route index element={<MainPage/>}/>
             <Route path="join-us/user" element={<UserInfo/>}/>
             <Route path="contact-us" element={<Contact/>}/>
@@ -30,8 +27,8 @@ function App() {
             <Route path="games/snake-ladder" element={<SnakeandLadder/>}/>
             <Route path="games/ludo" element={<Ludo/>}/>
             <Route path="statistics" element={<Statistics/>}/>
-            <Route path="join-us/signup" element={<Signup users={users} setUsers={setUsers}/>}/>
-            <Route path="join-us/login" element={<LoginPage users={users} curruser={curruser} setCurruser={setCurruser}/>}/>
+            <Route path="join-us/signup" element={<Signup/>}/>
+            <Route path="join-us/login" element={<LoginPage/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

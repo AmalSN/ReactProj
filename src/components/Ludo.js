@@ -1,7 +1,12 @@
 import React from 'react'
 import './Ludo.css'
+import {useDispatch} from 'react-redux';
+import ludoWin from './../store/actions/ludoWin';
+import ludoLoss from './../store/actions/ludoLoss';
 export default function Ludo() {
 
+    const dispatch = useDispatch();
+    
     let diceOne;
     // let rank=1;
     let gcount=0;
@@ -77,40 +82,32 @@ export default function Ludo() {
                 if(gcount===4){
                     no_of_players_won++;
                     if(no_of_players_won===playerSize){
-                        let restart=window.confirm("Red Won, Do You Want to restart the game?");
-                        if(restart){
-                            window.location.reload();
-                        }
+                        window.confirm("Green Won, Do You Want to exit?");
+                        dispatch(ludoWin())
                     }
                 }
             }
             else if((chance-1+playerSize)%playerSize===1){
                 ycount++;
                 if(ycount===4){
-                        let restart=window.confirm("Yellow Won, Do You Want to restart the game?");
-                        if(restart){
-                            window.location.reload();
-                        }
+                        window.confirm("Yellow Won, Do You Want to exit?");
+                        dispatch(ludoLoss())
                     }
                 
             }
             else if((chance-1+playerSize)%playerSize===2){
                 bcount++;
                 if(bcount===4){
-                        let restart=window.confirm("Game Over, Do You Want to restart the game?");
-                        if(restart){
-                            window.location.reload();
-                        }
+                        window.confirm("Blue Won, Do You Want to exit?");
+                        dispatch(ludoLoss())
                     
                 }
             }
             else {
                 rcount++;
                 if(rcount===4){
-                        let restart=window.confirm("Game Over, Do You Want to restart the game?");
-                        if(restart){
-                            window.location.reload();
-                        }
+                        window.confirm("Red Won, Do You Want to exit?");
+                        dispatch(ludoLoss())
                     
                 }
             }

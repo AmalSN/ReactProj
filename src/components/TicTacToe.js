@@ -1,9 +1,14 @@
 import React from 'react'
 import './TicTacToe.css'
+import {useDispatch} from 'react-redux';
+import ticWin from './../store/actions/ticWin';
+import ticLoss from './../store/actions/ticLoss';
 import $ from 'jquery'
 
 export default function TicTacToe() {
   
+  const dispatch = useDispatch()
+
   let blockNumbering = {
     "block-top-left": 0,
     "block-top-middle": 1,
@@ -27,6 +32,12 @@ let drawSymbol = (pos) => {
       console.log(blockSymbol);
       $("#"+pos).addClass("ticoccupied");
       if(checkWin()){
+          if(currentSymbol === "X"){
+            dispatch(ticWin())
+          }
+          else{
+            dispatch(ticLoss())
+          }
           $(".winner-text").text("Player " + currentSymbol + " Wins!!");
           on();
           console.log(currentSymbol + " Won");

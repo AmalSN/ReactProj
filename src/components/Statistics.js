@@ -1,5 +1,6 @@
 import React from 'react'
 import stats from './Statistics.module.css'
+import {useSelector} from 'react-redux';
 
 export default function Statistics() {
 
@@ -10,6 +11,10 @@ export default function Statistics() {
         this.classList.toggle('active')
       })
     }
+
+    const valTic = useSelector(state => state.ticStat)
+    const valSnake = useSelector(state => state.snakeStat)
+    const valLudo = useSelector(state => state.ludoStat)
 
   return (
     <div className={stats.statbody}> 
@@ -25,28 +30,12 @@ export default function Statistics() {
                     <div className="card ">
                         <ul className="list-group">
                             <li className={stats.statlistgroupitem}>Number of game played: <span className="tic"
-                                    id="tic-played"></span></li>
-                            <li className={stats.statlistgroupitem}>Number of wins: <span className="tic" id="tic-win"></span> </li>
-                            <li className={stats.statlistgroupitem}>Number of losses: <span className="tic" id="tic-loss"></span>
+                                    id="tic-played">{valTic.played}</span></li>
+                            <li className={stats.statlistgroupitem}>Number of wins: <span className="tic" id="tic-win">{valTic.wins}</span> </li>
+                            <li className={stats.statlistgroupitem}>Number of losses: <span className="tic" id="tic-loss">{valTic.losses}</span>
                             </li>
                             <li className={stats.statlistgroupitem}>Wins Percentages: <span className="tic"
-                                    id="tic-Percentages">44.4%</span></li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-            <hr/>
-            <div className={stats.statcontainer}>
-                <div className={stats.statlabel}>Ludo</div>
-                <div className={stats.statcontent}>
-
-                    <div className="card">
-                        <ul className="list-group">
-                            <li className={stats.statlistgroupitem}>Number of game played: <span className="ludo" id="ludo-played"></span></li>
-                            <li className={stats.statlistgroupitem}>Number of wins: <span className="ludo" id="ludo-win"></span> </li>
-                            <li className={stats.statlistgroupitem}>Number of losses: <span className="ludo" id="ludo-loss"></span> </li>
-                            <li className={stats.statlistgroupitem}>Wins Percentages: <span className="ludo" id="ludo-percentages">44.4%</span></li>
+                                    id="tic-Percentages">{valTic.perc}%</span></li>
                         </ul>
                     </div>
 
@@ -59,10 +48,27 @@ export default function Statistics() {
 
                     <div className="card">
                         <ul className="list-group">
-                            <li className={stats.statlistgroupitem}>Number of game played: <span className="snakes" id="snake-played"></span></li>
-                            <li className={stats.statlistgroupitem}>Number of wins: <span className="snakes" id="snake-win"></span></li>
-                            <li className={stats.statlistgroupitem}>Number of losses: <span className="snakes" id="snake-loss"></span> </li>
-                            <li className={stats.statlistgroupitem}>Wins Percentages: <span className="snakes" id="snake-percentages">44.4%</span></li>
+                            <li className={stats.statlistgroupitem}>Number of game played: <span className="snakes" id="snake-played">{valSnake.played}</span></li>
+                            <li className={stats.statlistgroupitem}>Number of wins: <span className="snakes" id="snake-win"></span>{valSnake.wins}</li>
+                            <li className={stats.statlistgroupitem}>Number of losses: <span className="snakes" id="snake-loss">{valSnake.losses}</span> </li>
+                            <li className={stats.statlistgroupitem}>Wins Percentages: <span className="snakes" id="snake-percentages">{valSnake.perc}%</span></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            
+            <hr/>
+            <div className={stats.statcontainer}>
+                <div className={stats.statlabel}>Ludo</div>
+                <div className={stats.statcontent}>
+
+                    <div className="card">
+                        <ul className="list-group">
+                            <li className={stats.statlistgroupitem}>Number of game played: <span className="ludo" id="ludo-played">{valLudo.played}</span></li>
+                            <li className={stats.statlistgroupitem}>Number of wins: <span className="ludo" id="ludo-win">{valLudo.wins}</span> </li>
+                            <li className={stats.statlistgroupitem}>Number of losses: <span className="ludo" id="ludo-loss">{valLudo.losses}</span> </li>
+                            <li className={stats.statlistgroupitem}>Wins Percentages: <span className="ludo" id="ludo-percentages">{valLudo.perc}%</span></li>
                         </ul>
                     </div>
 

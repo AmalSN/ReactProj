@@ -1,8 +1,12 @@
 import React from 'react'
+import {useSelector} from 'react-redux';
 import {Link} from  "react-router-dom";
 
 
-const Navbar = ({active, setActive, curruser}) => {
+const Navbar = ({active, setActive}) => {
+
+    const curruser = useSelector(state => state.currUser)
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
     <div className="container-fluid offset-md-4">

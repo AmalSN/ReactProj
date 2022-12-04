@@ -1,10 +1,15 @@
 import React from "react";
-import lgpg from "./LoginPage.module.css"
+import lgpg from "./LoginPage.module.css";
+import {useDispatch, useSelector} from 'react-redux';
+import currUser from './../store/actions/currUser.js';
 import {useState} from "react"
 
-export default function LoginPage({users,curruser,setCurruser}) {
+export default function LoginPage() {
 
   const [inputs, setInputs] = useState({});
+
+  const dispatch = useDispatch();
+  const users = useSelector(state => state.userList)
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -18,8 +23,8 @@ export default function LoginPage({users,curruser,setCurruser}) {
       users.forEach((x)=>{
         if(x.uName===inputs.uName&&x.password===inputs.password){
           flag=1;
-          setCurruser(curruser=inputs.uName)
-          alert("Welcome"+inputs.uName)
+          dispatch(currUser(inputs.uName))
+          alert("Welcome "+inputs.uName)
         }
       })
       if(!flag){

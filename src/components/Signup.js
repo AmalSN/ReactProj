@@ -1,9 +1,14 @@
 import React from 'react'
 import sgpg from './Signup.module.css'
+import {useDispatch, useSelector} from 'react-redux';
+import userEntry from './../store/actions/userEntry';
 import { useState } from "react";
 
-export default function Signup({users,setUsers}) {
+export default function Signup() {
 
+    const dispatch = useDispatch()
+    const users = useSelector(state => state.userList)
+    
     const [inputs, setInputs] = useState({});
 
     const handleChange = (event) => {
@@ -22,7 +27,7 @@ export default function Signup({users,setUsers}) {
             }
         })
         if(flag){
-            setUsers([...users, inputs])
+            dispatch(userEntry(inputs));
         }
         console.log(users);
     }
