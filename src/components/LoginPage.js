@@ -8,6 +8,7 @@ export default function LoginPage() {
 
   const [inputs, setInputs] = useState({});
 
+  //------------
   const dispatch = useDispatch();
   const users = useSelector(state => state.userList)
 
@@ -31,6 +32,8 @@ export default function LoginPage() {
         alert("Wrong Credentials")
       }
     }
+
+  //-----------------------
 
   return (
     <div className={lgpg.bgimage}>

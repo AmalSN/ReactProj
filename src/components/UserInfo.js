@@ -17,7 +17,7 @@ function UserInfo() {
     return index;
   }
   
-
+//Redux
   const [inputs, setInputs] = useState({});
   const handleChange = (event) => {
     const name = event.target.name;
@@ -37,6 +37,7 @@ function UserInfo() {
     }
   };
 
+  //--------------------------
   return (
     <div className="form-container">
       <Form className="body" onSubmit={handleSubmit}>

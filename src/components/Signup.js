@@ -6,6 +6,7 @@ import { useState } from "react";
 
 export default function Signup() {
 
+    //----------------
     const dispatch = useDispatch()
     const users = useSelector(state => state.userList)
     
@@ -31,6 +32,8 @@ export default function Signup() {
         }
         console.log(users);
     }
+
+    //--------------------------
 
   return (
    <div className={sgpg.bgimage}>
