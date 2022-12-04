@@ -2,22 +2,24 @@ import React from 'react'
 import mainstyle from "./MainPage.module.css"
 import Carousel from "./Carousel.js"
 import $ from 'jquery';
+import {Link} from "react-router-dom";
 // import "../pages/Hello.js"
 const MainPage = () => {
 
     
     function playGame(){
         let game = $(".active h5").text();
+        console.log(game);
         if(game === "Tic-Tac-Toe") game = "tic-tac-toe";
         else if(game === "Snake and Ladder") game = "snake-ladder";
         else game = "ludo"; 
-        window.location.href = "/games/" + game;
+        return "/games/" + game;
     }
     function userSettings(){
-        window.location.href = "/join-us/user";
+        return "/join-us/user";
     }
     function contactUs(){
-        window.location.href = "/contact-us";
+        return "/contact-us";
     }
 
   return (
@@ -73,18 +75,24 @@ const MainPage = () => {
         </div>
         <div className="row">
             <div className="col-6">
-                <button type="button" className="btn btn-warning btn-lg mx-auto d-block" onClick={() => playGame()}>Play</button>
+                <Link to={playGame()}>
+                    <button type="button" className="btn btn-warning btn-lg mx-auto d-block">Play</button>
+                </Link>
                   {/* playGame() */}
             </div>
             {/* <div className="col-2"></div> */}
             <div className="col-2">
-                <button type="button" className="btn btn-warning btn-lg offset-md-4" onClick={() => userSettings()}>
+                <Link to={userSettings()}>
+                    <button type="button" className="btn btn-warning btn-lg offset-md-4" onClick={() => userSettings()}>
                     {/* userSettings() */}
                     <img src="/profile.png" style={{width: 50+"px", height: 50+"px"}} alt=""/>
-                </button>
+                    </button>
+                </Link>
             </div>
             <div className="col-2">
-                <button type="button" className="btn btn-warning btn-lg" onClick={() => contactUs()}>Contact-Us</button>
+                <Link to={contactUs()}>
+                    <button type="button" className="btn btn-warning btn-lg" onClick={() => contactUs()}>Contact-Us</button>
+                </Link>
                 {/* contactUs() */}
             </div>
         </div>

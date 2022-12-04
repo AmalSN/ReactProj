@@ -21,7 +21,6 @@ export default function TicTacToe() {
     "block-bottom-right": 8
 };
 
-console.log("Working");
 let blockSymbol = ["","","","","","","","",""];
 let currentSymbol = "X";
 

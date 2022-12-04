@@ -1,10 +1,23 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./UserInfo.css";
+import {useSelector, useDispatch} from 'react-redux';
+import userUpdate from './../store/actions/userUpdate.js';
 import React, { useState } from "react";
 // import validator from "validator";
 
 function UserInfo() {
+
+  const dispatch = useDispatch()
+  const users = useSelector(state => state.userList)
+  const currUser = useSelector(state => state.currUser)
+
+  let findInd = () => {
+    let index = users.findIndex(user => user.uName === currUser)
+    return index;
+  }
+  
+
   const [inputs, setInputs] = useState({});
   const handleChange = (event) => {
     const name = event.target.name;
@@ -14,9 +27,10 @@ function UserInfo() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(inputs.newpass===inputs.confirmpass){
-      let str = "Name: "+inputs.firstname+" "+inputs.lastname+"\n Email: "+inputs.email+"\n Old Pass.: "+inputs.oldpass+"\n New Pass.: "+inputs.newpass+"\n Confirm Pass.: "+inputs.confirmpass;
+    if(inputs.password===inputs.passwordConfirm){
+      let str = "Name: "+inputs.fName+" "+inputs.lName+"\n Email: "+inputs.email+"\n Old Pass.: "+inputs.oldpass+"\n New Pass.: "+inputs.password+"\n Confirm Pass.: "+inputs.passwordConfirm;
       alert(str);
+      dispatch(userUpdate(inputs,currUser));
     }
     else{
       alert("Wrong password");
@@ -26,15 +40,15 @@ function UserInfo() {
   return (
     <div className="form-container">
       <Form className="body" onSubmit={handleSubmit}>
-        <h3>Kanhaiya Kumar</h3>
+        <h3>{findInd()!==-1?`${users[findInd()].fName} ${users[findInd()].lName}`:"Login to display"}</h3>
         <hr className="my-4 hr" />
         <Form.Group className="mb-3 ">
           <Form.Label>First Name</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter First Name"
-            name="firstname"
-            value={inputs.firstname || ""}
+            name="fName"
+            value={inputs.fName || ""}
             onChange={handleChange}
           />
         </Form.Group>
@@ -44,8 +58,8 @@ function UserInfo() {
           <Form.Control
             type="text"
             placeholder="Enter Last Name"
-            name="lastname"
-            value={inputs.lastname || ""}
+            name="lName"
+            value={inputs.lName || ""}
             onChange={handleChange}
           />
         </Form.Group>
@@ -79,8 +93,8 @@ function UserInfo() {
           <Form.Control
             type="password"
             placeholder="New Password"
-            name="newpass"
-            value={inputs.newpass || ""}
+            name="password"
+            value={inputs.password || ""}
             onChange={handleChange}
           />
         </Form.Group>
@@ -90,8 +104,8 @@ function UserInfo() {
           <Form.Control
             type="password"
             placeholder="Confirm Password"
-            name="confirmpass"
-            value={inputs.confirmpass || ""}
+            name="passwordConfirm"
+            value={inputs.passwordConfirm || ""}
             onChange={handleChange}
           />
         </Form.Group>
