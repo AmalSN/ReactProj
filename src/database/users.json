@@ -1,0 +1,22 @@
+[
+    {
+        "fName": "Amal",
+        "lName": "Namboodiri",
+        "gender": "M",
+        "age": 20,
+        "uName": "amalsn",
+        "email": "amalkrish12@gmail.com",
+        "password": "amalsn",
+        "passwordConfirm": "amalsn"
+    },
+    {
+        "fName": "AAA",
+        "lName": "NNN",
+        "gender": "F",
+        "age": 21,
+        "uName": "aaannn",
+        "email": "aaannn@gmail.com",
+        "password": "aaannn",
+        "passwordConfirm": "aaannn"
+    }
+]

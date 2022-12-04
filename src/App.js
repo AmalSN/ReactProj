@@ -6,6 +6,7 @@ import Contact from "./components/Contact";
 import SnakeandLadder from "./components/SnakeandLadder";
 import TicTacToe from "./components/TicTacToe";
 import UserInfo from "./components/UserInfo";
+import dataUsers from './database/users.json';
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import { useState } from "react";
 import './App.css';
@@ -14,7 +15,7 @@ import LoginPage from "./components/LoginPage";
 
 function App() {
   const [active,setActive] = useState("Home")
-  const [users,setUsers] = useState([])
+  const [users,setUsers] = useState(dataUsers)
   const [curruser,setCurruser] = useState("")
 
   return (
