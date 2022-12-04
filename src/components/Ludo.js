@@ -27,13 +27,8 @@ export default function Ludo() {
 
     function move(e){
 
-        // let allGreen=document.getElementsByClassName("pg");
-        // let allYellow=document.getElementsByClassName("py");
-        // let allRed=document.getElementsByClassName("pr");
-        // let allBlue=document.getElementsByClassName("pb");
         let chanceText=document.getElementById("chance");
         let rollbtn=document.getElementById("dice-btn");
-        // let elDiceOne = document.getElementById('dice1');
 
         let flag = 0;
     
