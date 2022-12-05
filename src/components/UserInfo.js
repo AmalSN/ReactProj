@@ -27,7 +27,7 @@ function UserInfo() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(inputs.password===inputs.passwordConfirm){
+    if(inputs.password===inputs.passwordConfirm&&inputs.oldpass===users[findInd()].password){
       let str = "Name: "+inputs.fName+" "+inputs.lName+"\n Email: "+inputs.email+"\n Old Pass.: "+inputs.oldpass+"\n New Pass.: "+inputs.password+"\n Confirm Pass.: "+inputs.passwordConfirm;
       alert(str);
       dispatch(userUpdate(inputs,currUser));

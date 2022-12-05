@@ -3,17 +3,18 @@ import mainstyle from "./MainPage.module.css"
 import Carousel from "./Carousel.js"
 import $ from 'jquery';
 import {Link} from "react-router-dom";
-// import "../pages/Hello.js"
+import { useState } from "react";
+
 const MainPage = () => {
 
-    
+    let [gameLink,setGameLink]=useState("/games/tic-tac-toe");
+
     function playGame(){
-        let game = $(".active h5").text();
-        console.log(game);
+        let game = $(".carousel-inner .active h5").text();
         if(game === "Tic-Tac-Toe") game = "tic-tac-toe";
         else if(game === "Snake and Ladder") game = "snake-ladder";
         else game = "ludo"; 
-        return "/games/" + game;
+        setGameLink(gameLink = "/games/" + game);
     }
     function userSettings(){
         return "/join-us/user";
@@ -75,7 +76,7 @@ const MainPage = () => {
         </div>
         <div className="row">
             <div className="col-6">
-                <Link to={playGame()}>
+                <Link to={gameLink} onMouseOver={playGame} style={{textDecoration:"none"}}>
                     <button type="button" className="btn btn-warning btn-lg mx-auto d-block">Play</button>
                 </Link>
                   {/* playGame() */}
@@ -83,7 +84,7 @@ const MainPage = () => {
             {/* <div className="col-2"></div> */}
             <div className="col-2">
                 <Link to={userSettings()}>
-                    <button type="button" className="btn btn-warning btn-lg offset-md-4" onClick={() => userSettings()}>
+                    <button type="button" className="btn btn-warning btn-lg offset-md-4" >
                     {/* userSettings() */}
                     <img src="/profile.png" style={{width: 50+"px", height: 50+"px"}} alt=""/>
                     </button>
@@ -91,7 +92,7 @@ const MainPage = () => {
             </div>
             <div className="col-2">
                 <Link to={contactUs()}>
-                    <button type="button" className="btn btn-warning btn-lg" onClick={() => contactUs()}>Contact-Us</button>
+                    <button type="button" className="btn btn-warning btn-lg">Contact-Us</button>
                 </Link>
                 {/* contactUs() */}
             </div>

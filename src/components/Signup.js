@@ -23,14 +23,18 @@ export default function Signup() {
         let flag=1;
         users.forEach((x)=>{
             if(x.uName===inputs.uName){
-                alert("Username already exists")
+                alert("Username already exists");
                 flag=0;
             }
         })
+        if(inputs.password!==inputs.passwordConfirm){
+            alert("Password doesnt match confirm password field");
+            flag=0
+        }
         if(flag){
+            alert("Successfully created account");
             dispatch(userEntry(inputs));
         }
-        console.log(users);
     }
 
     //--------------------------
@@ -96,7 +100,7 @@ export default function Signup() {
                                     </div><br/>
                                     <div className="col">
                                         <input type="email" className="form-control" id="email" placeholder="Email"
-                                            size="30" name="email" required onChange={handleChange}/>
+                                            size="30" name="email" pattern="/[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g" required onChange={handleChange}/>
                                     </div><br/>
                                     <div className="col">
                                         <input type="password" className="form-control" id="password" placeholder="Password"
